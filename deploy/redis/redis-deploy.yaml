@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: instavote
+    component: queue
+  name: redis
+  namespace: instavote
+  annotations:
+    kubernetes.io/change-cause: "Initial Redis deployment"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: instavote
+      component: queue
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: instavote
+        component: queue
+    spec:
+      containers:
+      - image: redis:alpine
+        name: redis
+        resources: {}
