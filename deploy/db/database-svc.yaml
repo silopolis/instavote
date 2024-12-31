@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: instavote
+    component: database
+  name: db
+  namespace: instavote
+spec:
+  ports:
+  - name: "postgres"
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: instavote
+    component: database
+  type: ClusterIP

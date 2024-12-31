@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: instavote
+    component: database
+  name: postgres
+  namespace: instavote
+  annotations:
+    kubernetes.io/change-cause: "Initial Postgres database deployment"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: instavote
+      component: database
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: instavote
+        component: database
+    spec:
+      containers:
+      - image: postgres:9.4
+        name: postgres
+        resources: {}
+        env:
+        - name: POSTGRES_HOST_AUTH_METHOD
+          value: trust
