@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: instavote
+    component: vote
+  name: vote
+  namespace: instavote
+spec:
+  ports:
+  - name: "http"
+    nodePort: 30000
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: instavote
+    component: vote
+  type: NodePort

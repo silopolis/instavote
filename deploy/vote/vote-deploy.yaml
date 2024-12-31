@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: instavote
+    component: vote
+  name: vote
+  namespace: instavote
+  annotations:
+    kubernetes.io/change-cause: "Initial Vote frontend deployment"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: instavote
+      component: vote
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: instavote
+        component: vote
+    spec:
+      containers:
+      - image: schoolofdevops/vote:v4
+        name: vote
+        resources: {}
